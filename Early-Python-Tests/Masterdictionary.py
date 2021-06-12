@@ -71,7 +71,7 @@ relationshipdict={
         'lovers':['partner','spouse','lover','friend with benefits','pursuer','persued'],
         'old friends':['childhood','gradeschool','university','long-time colleague','hobby friend'],
         'exes':['lover','old friend'],
-        'co-habitators':['family','roommate','fellow servant']
+        'co-habitators':['family','roommate','fellow servant'],
         'none':['never heard of them','know their reputation','share an acquaintance']
         }
 genderdict={
