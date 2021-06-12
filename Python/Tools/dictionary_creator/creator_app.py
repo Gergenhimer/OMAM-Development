@@ -2,7 +2,7 @@ import sys
 
 
 from PySide2 import QtCore, QtGui, QtWidgets
-from PySide2.QtWidgets import QWizardPage, QGroupBox, QGridLayout, QButtonGroup, QRadioButton
+from PySide2.QtWidgets import QWizardPage, QGroupBox, QGridLayout, QButtonGroup, QRadioButton, QTreeWidget, QTreeWidgetItem
 
 
 class FundamentalTraitsPage(QWizardPage):
@@ -89,12 +89,51 @@ class FundamentalTraitsPage(QWizardPage):
         fullLayout.addWidget(incomeBox, 5, 1)
         self.setLayout(fullLayout)
 
+    def isComplete(self) -> bool:
+        return super().isComplete()
+
+class SimpleListPage(QWizardPage):
+
+    def __init__(self, *args, **kwargs):
+        super(SimpleListPage, self).__init__(*args, **kwargs)
+
+class MutexListPage(QWizardPage):
+
+    def __init__(self, *args, **kwargs):
+        super(MutexListPage, self).__init__(*args, **kwargs)
+
+class TreePage(QWizardPage):
+
+    def __init__(self, *args, **kwargs):
+        super(TreePage, self).__init__(*args, **kwargs)
+
+        treeBox = QGroupBox()
+        treeLayout = QGridLayout()
+        treeBase = QTreeWidget()
+        treeBase.setColumnCount(3)
+        treeFamily = QTreeWidgetItem(treeBase)
+        treeFamily.setText(0, "Family")
+        treeFamilyParental = QTreeWidgetItem(treeFamily)
+        treeFamilyParental.setText(0, "Parental")
+        treeFamilyParentalParent = QTreeWidgetItem()
+        treeFamilyParentalParent.setText(0, "Parent")
+        treeFamilyParentalChild = QTreeWidgetItem()
+        treeFamilyParentalChild.setText(0, "Child")
+        treeFamilySibling = QTreeWidgetItem(treeFamily)
+        treeFamilySibling.setText(0, "Sibling")
+        treeFamilySiblingSibling = QTreeWidgetItem()
+        treeFamilySiblingSibling.setText(0, "Sibling")
+        treeLayout.addWidget(treeBase)
+        self.setLayout(treeLayout)
+
+
 
 def main():
     app = QtWidgets.QApplication()
     
     wizzzard = QtWidgets.QWizard()
     wizzzard.addPage(FundamentalTraitsPage())
+    wizzzard.addPage(TreePage())
     wizzzard.show()
 
     sys.exit(app.exec_())
